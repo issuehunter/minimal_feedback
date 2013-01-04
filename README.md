@@ -42,7 +42,7 @@ What would happen with this configuration:
 
 ```ruby
 issue = Issue.create
-issue.condition = proc { true }
+issue.condition = true
 issue.give_feedback(:positive)
 issue.feedbacks.first.type
 => :positive

@@ -40,7 +40,7 @@ describe Issue do
 
   it 'assigns positive feedback' do
     user = User.create
-    @issue.condition = proc { true }
+    @issue.condition = true
     @issue.give_feedback(:positive, :user => user)
 
     @issue.feedbacks.first.type.should == :positive
@@ -48,14 +48,14 @@ describe Issue do
 
   it 'assigns negative feedback' do
     user = User.create
-    @issue.condition = proc { true }
+    @issue.condition = true
     @issue.give_feedback(:negative, :user => user)
 
     @issue.feedbacks.first.type.should == :negative
   end
 
   it 'cannot assign feedback if the condition is false' do
-    @issue.condition = proc { false }
+    @issue.condition = false
     expect { @issue.give_feedback(:positive, :user => @user) }.to raise_error
   end
 end
