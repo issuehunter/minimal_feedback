@@ -8,6 +8,8 @@ module MinimalFeedback
   included do
     has_many :feedbacks, :as => :rateable, :class_name => 'MinimalFeedback::Feedback'
 
+    class InvalidFeedbackError < StandardError; end
+
     def give_feedback(type)
       feedback_type = type.to_sym
       case feedback_type
@@ -15,6 +17,8 @@ module MinimalFeedback
         Feedback.create(:rating => 1) { |f| f.rateable = self }
       when :negative
         Feedback.create(:rating => -1) { |f| f.rateable = self }
+      else
+        raise InvalidFeedbackError
       end
     end
   end
