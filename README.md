@@ -23,7 +23,18 @@ rake db:migrate
 Let's say we have an Issue ActiveRecord model and we want to be able to give it feedback
 
 ```ruby
+class User < ActiveRecord::Base
+  has_many :issues
+end
+
 class Issue < ActiveRecord::Base
+  include MinimalFeedback
+
+  attr_accessor :condition
+
+  allow_feedback :if => proc { condition }
+
+  belongs_to :user
 end
 ```
 
@@ -31,6 +42,7 @@ What would happen with this configuration:
 
 ```ruby
 issue = Issue.create
+issue.condition = proc { true }
 issue.give_feedback(:positive)
 issue.feedbacks.first.type
 => :positive
@@ -39,6 +51,8 @@ issue.give_feedback(:negative)
 issue.feedbacks.last.type
 => :negative
 ```
+
+Else if the condition proc returns false when the feedback validation is performed an exception is raised
 
 ## Contributing
 
