@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = MinimalFeedback::VERSION
   gem.authors       = ["Matteo Depalo"]
   gem.email         = ["matteodepalo@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Feedback functionalities for ActiveRecord models}
+  gem.summary       = %q{Feedback functionalities for ActiveRecord models}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
