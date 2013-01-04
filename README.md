@@ -1,24 +1,44 @@
-# MinimalFeedback
+# MinimalFeedback[![Build Status](https://secure.travis-ci.org/issuehunter/minimal_feedback.png)](http://travis-ci.org/issuehunter/minimal_feedback)
 
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'minimal_feedback'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install minimal_feedback
+Feedback functionalities for ActiveRecord models
 
 ## Usage
 
-TODO: Write usage instructions here
+Add to Gemfile:
+
+```ruby
+gem 'minimal_feedback'
+```
+
+Run:
+
+```ruby
+bundle install
+rails generate minimal_state_machine
+rake db:migrate
+```
+
+## Quick Start
+
+Let's say we have an Issue ActiveRecord model and we want to be able to give it feedback
+
+```ruby
+class Issue < ActiveRecord::Base
+end
+```
+
+What would happen with this configuration:
+
+```ruby
+issue = Issue.create
+issue.give_feedback(:positive)
+issue.feedbacks.first.type
+=> :positive
+
+issue.give_feedback(:negative)
+issue.feedbacks.last.type
+=> :negative
+```
 
 ## Contributing
 
