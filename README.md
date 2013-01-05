@@ -14,7 +14,7 @@ Run:
 
 ```ruby
 bundle install
-rails generate minimal_state_machine
+rails generate minimal_feedback
 rake db:migrate
 ```
 
