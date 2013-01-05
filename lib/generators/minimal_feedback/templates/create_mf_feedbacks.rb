@@ -1,4 +1,4 @@
-class CreateMsmStates < ActiveRecord::Migration
+class CreateMfFeedbacks < ActiveRecord::Migration
   def change
     create_table :mf_feedbacks do |t|
       t.string :type
