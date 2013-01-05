@@ -52,7 +52,7 @@ issue.feedbacks.last.type
 => :negative
 ```
 
-Else if the condition proc returns false when the feedback validation is performed an exception is raised
+If the condition proc returns false when the feedback validation is performed an exception is raised
 
 ## Contributing
 
