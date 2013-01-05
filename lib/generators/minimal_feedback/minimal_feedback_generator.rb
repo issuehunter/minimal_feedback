@@ -14,7 +14,7 @@ class MinimalFeedbackGenerator < Rails::Generators::Base
   end
 
   def create_migration_files
-    create_migration_file_if_not_exist 'create_msm_states'
+    create_migration_file_if_not_exist 'create_mf_feedbacks'
   end
 
   private
