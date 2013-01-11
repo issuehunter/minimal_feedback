@@ -1,14 +1,15 @@
 require 'minimal_feedback/version'
-require 'minimal_feedback/feedback'
 require 'active_support'
+require 'active_record'
+require 'minimal_feedback/feedback'
+require 'minimal_feedback/negative_feedback'
+require 'minimal_feedback/positive_feedback'
 
 module MinimalFeedback
   extend ActiveSupport::Concern
 
   included do
     has_many :feedbacks, :as => :rateable, :class_name => 'MinimalFeedback::Feedback'
-
-    class InvalidFeedbackError < StandardError; end
 
     cattr_accessor :feedback_condition
 
@@ -20,18 +21,9 @@ module MinimalFeedback
       options = args.extract_options!
       type = args.first.to_sym
 
-      feedback = Feedback.new do |f|
+      feedback = Feedback.build(:type => type) do |f|
         f.rateable = self
         f.user = options[:user]
-      end
-
-      case type
-      when :positive
-        feedback.rating = 1
-      when :negative
-        feedback.rating = -1
-      else
-        raise InvalidFeedbackError
       end
 
       feedback.save!
