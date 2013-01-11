@@ -14,7 +14,7 @@ Run:
 
 ```ruby
 bundle install
-rails generate minimal_state_machine
+rails generate minimal_feedback
 rake db:migrate
 ```
 
@@ -52,7 +52,7 @@ issue.feedbacks.last.type
 => :negative
 ```
 
-Else if the condition proc returns false when the feedback validation is performed an exception is raised
+If the condition proc returns false when the give_feedback method is called an ActiveRecord invalid exception is raised.
 
 ## Contributing
 
